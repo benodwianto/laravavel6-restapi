@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\post\PostCollection;
 use App\Http\Resources\post\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class PostController extends Controller
     public function index()
     {
         $data = Post::all();
-        return response()->json($data, 200);
+        return new PostCollection($data);
+        // return response()->json($data, 200);
     }
 
     public function show($id)
